@@ -1,0 +1,5 @@
+#!/bin/bash -e
+
+cp src/icon.png build/icon.png
+cp src/manifest.json build/manifest.json
+cp src/popup/popup.html build/popup.html

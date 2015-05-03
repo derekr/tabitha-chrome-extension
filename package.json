@@ -1,0 +1,31 @@
+{
+  "name": "tabitha-chrome-extension",
+  "version": "1.0.0",
+  "author": "Derek Reynolds <derekr@me.com>",
+  "bugs": {
+    "url": "https://github.com/derekr/tabitha-chrome-extension/issues"
+  },
+  "devDependencies": {
+    "browserify": "^10.0.0",
+    "localenvify": "^1.0.1",
+    "nets": "^3.1.0"
+  },
+  "homepage": "https://github.com/derekr/tabitha-chrome-extension#readme",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derekr/tabitha-chrome-extension.git"
+  },
+  "scripts": {
+    "build": "rm -rf build && mkdir -p build/{css,js} && npm run bundle && scripts/cp && npm run build-crx",
+    "bundle": "npm run bundle-popup && npm run bundle-background",
+    "bundle-background": "browserify -t localenvify src/background.js > build/background.js",
+    "bundle-popup": "browserify -t localenvify src/popup/popup.js > build/js/popup.js",
+    "build-crx": "touch tabitha.crx && rm tabitha.crx && scripts/crx build mykey.pem && mv build.crx tabitha.crx",
+    "test": "standard ./src/**/*"
+  },
+  "dependencies": {
+    "frame-rpc": "^1.2.0"
+  }
+}
